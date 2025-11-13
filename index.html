@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>QR Code Generator</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <div id="loading-view" class="container">
+        <h1>Loading...</h1>
+        <p>Checking your login status.</p>
+    </div>
+
+    <div id="app-view" class="container" style="display: none;">
+        
+        <div class="user-header">
+            <p>Welcome, <strong id="user-email"></strong>!</p>
+            <button id="logout-btn">Logout</button>
+        </div>
+
+        <hr>
+
+        <h1>QR Code Generator</h1>
+        <p>Enter any text or URL to generate a QR code:</p>
+        
+        <input type="text" id="qrText" placeholder="e.g., https://www.google.com">
+        <button id="generateBtn">Generate QR Code</button>
+        
+        <div id="qrContainer">
+            </div>
+    </div>
+
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-auth.js"></script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+    
+    <script src="auth.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
