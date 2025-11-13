@@ -1,4 +1,10 @@
-
+//
+// ⚠️ ======================================================================
+// ⚠️  PASTE YOUR FIREBASE CONFIGURATION OBJECT HERE
+// ⚠️  You get this from the Firebase console (Project Settings > General)
+// ⚠️ ======================================================================
+// Your web app's Firebase configuration
+// For Firebase JS SDK v7.20.0 and later, measurementId is optional
 const firebaseConfig = {
   apiKey: "AIzaSyDC_wjN2s0ellxlMMh25Nw_HW--nv8F_I0",
   authDomain: "qr-generator-app-21e62.firebaseapp.com",
@@ -8,6 +14,7 @@ const firebaseConfig = {
   appId: "1:165403782440:web:53af715d0a24f0983af41d",
   measurementId: "G-LTZ6BMXD8W"
 };
+
 
 // Initialize Firebase
 firebase.initializeApp(firebaseConfig);
@@ -31,8 +38,8 @@ auth.onAuthStateChanged((user) => {
     if (user) {
         // --- User is LOGGED IN ---
 
-        // Are we on the login page?
-        if (loginBox) {
+        // Are we on the login page OR the signup page?
+        if (loginBox || signupBox) { // <-- *** THIS IS THE ONLY CHANGE ***
             // Yes. Redirect them to the app (index.html).
             window.location.href = "index.html";
         }
@@ -65,6 +72,7 @@ auth.onAuthStateChanged((user) => {
 
 
 // === EVENT LISTENERS ===
+// (No changes needed to the rest of the file)
 
 // Add signup listener (only if the button exists on this page)
 if (signupBtn) {
