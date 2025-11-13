@@ -1,10 +1,4 @@
-//
-// ⚠️ ======================================================================
-// ⚠️  PASTE YOUR FIREBASE CONFIGURATION OBJECT HERE
-// ⚠️  You get this from the Firebase console (Project Settings > General)
-// ⚠️ ======================================================================
-// Your web app's Firebase configuration
-// For Firebase JS SDK v7.20.0 and later, measurementId is optional
+
 const firebaseConfig = {
   apiKey: "AIzaSyDC_wjN2s0ellxlMMh25Nw_HW--nv8F_I0",
   authDomain: "qr-generator-app-21e62.firebaseapp.com",
