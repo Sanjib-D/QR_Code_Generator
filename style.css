@@ -110,3 +110,21 @@ hr {
     font-size: 0.8rem;
     margin-top: -10px;
 }
+
+/* Add this to the end of style.css */
+
+.form-link {
+    font-size: 0.9rem;
+    color: #555;
+    margin-top: 20px;
+}
+
+.form-link a {
+    color: #007bff;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.form-link a:hover {
+    text-decoration: underline;
+}
