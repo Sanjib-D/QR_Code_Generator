@@ -13,10 +13,6 @@ const firebaseConfig = {
 firebase.initializeApp(firebaseConfig);
 const auth = firebase.auth();
 
-// Initialize Firebase
-firebase.initializeApp(firebaseConfig);
-const auth = firebase.auth();
-
 // === PAGE PROTECTION & AUTH LOGIC ===
 
 // Get references to elements (they might not all exist on the current page)
