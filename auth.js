@@ -19,7 +19,7 @@ const firebaseConfig = {
 // Initialize Firebase
 firebase.initializeApp(firebaseConfig);
 const auth = firebase.auth();
-
+const db = firebase.firestore(); // Initialize Firestore
 // === PAGE PROTECTION & AUTH LOGIC ===
 
 // Get references to elements (they might not all exist on the current page)
