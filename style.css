@@ -128,3 +128,58 @@ hr {
 .form-link a:hover {
     text-decoration: underline;
 }
+
+/* History Section */
+#history-container {
+    margin-top: 30px;
+    text-align: left;
+    width: 100%;
+    max-width: 350px; /* Match container width */
+    margin-left: auto;
+    margin-right: auto;
+}
+
+#history-container h3 {
+    font-size: 1.1rem;
+    color: #333;
+    border-bottom: 2px solid #eee;
+    padding-bottom: 5px;
+    margin-bottom: 10px;
+}
+
+#history-list {
+    list-style: none;
+    padding: 0;
+    max-height: 200px;
+    overflow-y: auto; /* Scroll if list is long */
+}
+
+#history-list li {
+    background: #f9f9f9;
+    border-bottom: 1px solid #eee;
+    padding: 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 0.9rem;
+    color: #555;
+}
+
+#history-list li span {
+    white-space: nowrap; 
+    overflow: hidden;
+    text-overflow: ellipsis; /* Adds ... if text is too long */
+    max-width: 200px;
+}
+
+.history-btn {
+    width: auto;
+    padding: 4px 8px;
+    font-size: 0.75rem;
+    background-color: #6c757d;
+    margin-bottom: 0;
+}
+
+.history-btn:hover {
+    background-color: #5a6268;
+}
