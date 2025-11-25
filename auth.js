@@ -50,11 +50,102 @@ auth.onAuthStateChanged((user) => {
             loadingView.style.display = "none";
             appView.style.display = "block";
             userEmailDisplay.textContent = user.email;
+    // Accept user and db arguments
+function initQRGenerator(user, db) {
+    
+    const generateBtn = document.getElementById("generateBtn");
+    const qrTextInput = document.getElementById("qrText");
+    const qrContainer = document.getElementById("qrContainer");
+    const historyList = document.getElementById("history-list");
+
+    let qrCode;
+
+    // 1. Load History immediately
+    loadHistory();
+
+    function generateQRCode() {
+        const text = qrTextInput.value;
+
+        if (!text) {
+            alert("Please enter some text or a URL.");
+            return;
+        }
+
+        qrContainer.innerHTML = "";
+
+        qrCode = new QRCode(qrContainer, {
+            text: text,
+            width: 200,
+            height: 200,
+            colorDark: "#000000",
+            colorLight: "#ffffff",
+            correctLevel: QRCode.CorrectLevel.H
+        });
+
+        // 2. Save to Firestore
+        addToHistory(text);
+    }
+
+    // Function to save data to Firestore
+    function addToHistory(text) {
+        // We create a collection called 'users', go to the specific user ID, 
+        // then a sub-collection called 'history'.
+        db.collection("users").doc(user.uid).collection("history").add({
+            text: text,
+            timestamp: firebase.firestore.FieldValue.serverTimestamp()
+        })
+        .then(() => {
+            console.log("History saved");
+        })
+        .catch((error) => {
+            console.error("Error adding history: ", error);
+        });
+    }
+
+    // Function to Listen for updates from Firestore
+    function loadHistory() {
+        // This listener runs automatically whenever the database changes
+        db.collection("users").doc(user.uid).collection("history")
+        .orderBy("timestamp", "desc") // Show newest first
+        .limit(10) // Limit to last 10 items (optional)
+        .onSnapshot((snapshot) => {
+            
+            // Clear current list
+            historyList.innerHTML = "";
+
+            snapshot.forEach((doc) => {
+                const data = doc.data();
+                const li = document.createElement("li");
+                
+                // Create content
+                li.innerHTML = `
+                    <span>${data.text}</span>
+                    <button class="history-btn" onclick="navigator.clipboard.writeText('${data.text}')">Copy</button>
+                `;
+                
+                historyList.appendChild(li);
+            });
+
+            if(snapshot.empty) {
+                historyList.innerHTML = "<p style='color:#888; font-size:0.8rem;'>No history yet.</p>";
+            }
+        });
+    }
+
+    generateBtn.addEventListener("click", generateQRCode);
+
+    qrTextInput.addEventListener("keydown", (e) => {
+        if (e.key === "Enter") {
+            generateQRCode();
+        }
+    });
+}
 
             // Now that the app is visible, initialize the QR script
             if (typeof initQRGenerator === 'function') {
-                initQRGenerator();
-            }
+    // Pass the user and database to the function
+    initQRGenerator(user, db);
+}
         }
 
     } else {
