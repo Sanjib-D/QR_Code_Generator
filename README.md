@@ -10,10 +10,13 @@ A simple **web-based QR Code Generator** that allows users to create QR codes fo
   - Sign up, login, and logout functionality.
   - Redirects unauthorized users to the login page.
 - **QR Code Generation**
-  - Enter any text or URL to generate a custom QR code.
-  - Auto-refreshes QR image on each generation.
+  - Enter any text or URL to generate a custom QR code instantly.
+- **Generation History (New!)**
+  - Automatically saves every QR code you generate.
+  - **Cloud Sync:** History is saved to your account (Firestore), so you can see it on any device.
+  - **Quick Action:** One-click "Copy" button to retrieve old links.
 - **Protected Access**
-  - Only logged-in users can access the main generator page.
+  - Only logged-in users can access the generator and their personal history.
 - **Responsive UI**
   - Works on both desktop and mobile browsers.
 
@@ -22,8 +25,9 @@ A simple **web-based QR Code Generator** that allows users to create QR codes fo
 ## 🧩 Tech Stack
 
 - **HTML5, CSS3, JavaScript**
-- **Firebase (Auth & Hosting ready)**
-- **QRCode.js** library for generating QR codes
+- **Firebase Authentication** (User management)
+- **Firebase Cloud Firestore** (Real-time database for history)
+- **QRCode.js** (Library for generating QR codes)
 
 ---
 
@@ -32,14 +36,14 @@ A simple **web-based QR Code Generator** that allows users to create QR codes fo
 ```
 QR_Code_Generator/
 │
-├── index.html         # Main QR code generator page (protected)
-├── login.html         # Login and Sign Up page
-├── script.js          # Handles QR code generation logic
+├── index.html         # Main App (Generator + History)
+├── login.html         # Login Page
+├── signup.html        # Sign Up Page
+├── script.js          # Handles QR generation & History logic
 ├── auth.js            # Firebase config & authentication logic
 ├── style.css          # Styling for the pages
 └── README.md          # Project documentation
 ```
-
 ---
 
 ## Login & Generate
@@ -56,9 +60,10 @@ QR_Code_Generator/
 
 | Page | Access | Behavior |
 |------|---------|-----------|
-| `login.html` | Public | Allows login/signup |
+| `login.html` | Public | Allows login |
+| `signup.html` | Public | Allows account creation |
 | `index.html` | Protected | Redirects to login if user not signed in |
-| `logout` | Authenticated users | Signs out and returns to login page |
+| **Database** | Private | Users can only read/write their own history |
 
 ---
 
