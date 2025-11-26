@@ -1,6 +1,6 @@
 # 🔳 QR Code Generator (with Firebase Authentication)
 
-A simple **web-based QR Code Generator** that allows users to create QR codes for any text or URL — protected by **Firebase Authentication** (Sign up / Login system).
+A **web-based QR Code Generator** that allows users to create QR codes for any text or URL. It features **User Accounts** to keep your data safe and a **History Tab** to track your past generations.
 
 ---
 
